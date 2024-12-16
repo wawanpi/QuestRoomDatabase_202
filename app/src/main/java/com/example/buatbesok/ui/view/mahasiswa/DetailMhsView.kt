@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -22,8 +24,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.buatbesok.data.entity.Mahasiswa
 import com.example.buatbesok.ui.costumwidget.CustomTopAppBar
 import com.example.buatbesok.ui.viewmodel.DetailMhsViewModel
 import com.example.buatbesok.ui.viewmodel.DetailUiState
@@ -91,7 +97,7 @@ fun BodyDetailMhs(
                 CircularProgressIndicator() //Tampilkan loading
             }
         }
-        detailUiState.isUiEventNotEmpety -> {
+        detailUiState.isUiEventEmpty -> {
             Column (
                 modifier = modifier
                     .fillMaxWidth()
@@ -122,7 +128,7 @@ fun BodyDetailMhs(
                 }
             }
         }
-        detailUiState.isUiEventEmpety -> {
+        detailUiState.isUiEventEmpty -> {
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
@@ -133,6 +139,60 @@ fun BodyDetailMhs(
                 )
             }
         }
+    }
+}
+@Composable
+fun ItemDetailMhs(
+    modifier: Modifier =Modifier,
+    mahasiswa: Mahasiswa
+){
+    Card (
+        modifier = modifier
+            .fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        )
+    ){
+        Column (
+            modifier = Modifier.padding(16.dp)
+        ){
+            ComponentDetailMhs(judul = "NIM", isinya = mahasiswa.nim)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMhs(judul = "Nama", isinya = mahasiswa.nama)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMhs(judul = "Alamat", isinya = mahasiswa.alamat)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMhs(judul = "Jenis Kelamin", isinya = mahasiswa.jenisKelamin)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMhs(judul = "Kelas", isinya = mahasiswa.kelas)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMhs(judul = "Angkatan", isinya = mahasiswa.angkatan)
+            Spacer(modifier = Modifier.padding(4.dp))
+        }
+    }
+}
+@Composable
+fun ComponentDetailMhs(
+    modifier: Modifier = Modifier,
+    judul: String,
+    isinya: String,
+){
+    Column(
+        modifier = modifier.fillMaxWidth(),
+
+        horizontalAlignment = Alignment.Start
+    ){
+        Text(
+            text = "$judul :",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Gray
+        )
+        Text(
+            text = isinya, fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
