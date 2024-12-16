@@ -26,7 +26,7 @@ class DetailMhsViewModel(
         .filterNotNull()
         .map {
             DetailUiState(
-                detaiUiEvent = it.toDetailUiEvent(),
+                detailUiEvent = it.toDetailUiEvent(),
                 isLoading = false,
             )
         }
@@ -53,7 +53,7 @@ class DetailMhsViewModel(
         )
 
     fun deleteMhs(){
-        detailUiState.value.detaiUiEvent.toMahasiswaEntity().let {
+        detailUiState.value.detailUiEvent.toMahasiswaEntity().let {
             viewModelScope.launch {
                 repositoryMhs.deleteMhs(it)
             }
@@ -65,16 +65,16 @@ class DetailMhsViewModel(
 
 
 data class DetailUiState(
-    val detaiUiEvent :MahasiswaEvent = MahasiswaEvent(),
+    val detailUiEvent :MahasiswaEvent = MahasiswaEvent(),
     val isLoading: Boolean = false,
     val isError: Boolean = false,
     val erorMessage: String = ""
 ){
     val isUiEventEmpty: Boolean
-        get() = detaiUiEvent == MahasiswaEvent()
+        get() = detailUiEvent == MahasiswaEvent()
 
     val isEventNotEmpety: Boolean
-        get() = detaiUiEvent != MahasiswaEvent()
+        get() = detailUiEvent != MahasiswaEvent()
 
 }
 /* Data class untuk menampung data yang akan ditampilkan di UI*/

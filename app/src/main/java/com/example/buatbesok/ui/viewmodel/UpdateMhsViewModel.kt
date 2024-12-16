@@ -28,13 +28,14 @@ class UpdateMhsViewModel(
                 .first()
                 .toUIStateMhs()
         }
+    }
 
         fun updateState(mahasiswaEvent: MahasiswaEvent) {
             updateUiState = updateUiState.copy(
                 mahasiswaEvent = mahasiswaEvent,
             )
         }
-        fun validataFields(): Boolean {
+        fun validateFields(): Boolean {
             val event = updateUiState.mahasiswaEvent
             val errorState = FormErrorState(
                 nim = if (event.nim.isNotEmpty()) null else "Nim tidak boleh kosong",
@@ -49,7 +50,7 @@ class UpdateMhsViewModel(
         }
 fun updateData() {
     val currentEvent = updateUiState.mahasiswaEvent
-    if (validataFields()) {
+    if (validateFields()) {
         viewModelScope.launch {
             try {
                 repositoryMhs.updateMhs(currentEvent.toMahasiswaEntity())
@@ -71,12 +72,13 @@ fun updateData() {
     }
 }
 
-}
+
     fun resetSnackBarMessage() {
         updateUiState = updateUiState.copy(snackBarMessage = null)
 
     }
-}fun Mahasiswa.toUIStateMhs(): MhsUiState = MhsUiState(
+}
+fun Mahasiswa.toUIStateMhs(): MhsUiState = MhsUiState(
     mahasiswaEvent = this.toDetailUiEvent(),
 )
 

@@ -73,11 +73,11 @@ fun UpdateMhsView(
             InsertBodyMhs(
                 uiState = uiState,
                 onValueChange = {updateEvent ->
-                    viewModel.updateUiState(updateEvent) // update state di viewmodel
+                    viewModel.updateState(updateEvent) // update state di viewmodel
                 },
                 onClick = {
                     coroutineScope.launch {
-                        if (viewModel.validateField()){
+                        if (viewModel.validateFields()){
                             viewModel.updateData()
                             delay(600)
                             withContext(Dispatchers.Main) {
