@@ -70,7 +70,6 @@ data class DetailUiState(
     val isError: Boolean = false,
     val erorMessage: String = ""
 ){
-    val detailUiEvent: Any
     val isUiEventEmpty: Boolean
         get() = detaiUiEvent == MahasiswaEvent()
 
