@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
@@ -25,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -70,7 +72,7 @@ fun HomeMhsView(
             }
         }
     ) { innerPadding ->
-        val homeUiState by ViewModel.homeUiState.collectAsState()
+        val homeUiState by viewModel.homeUiState.collectAsState()
 
         BodyHomeMhsView(
             homeUiState = homeUiState,
@@ -148,10 +150,12 @@ fun ListMahasiswa(
     ) {
         items(
             items = listMhs,
-            itemContent = {mhs->
+            itemContent = { mhs ->
                 CardMhs(
                     mhs = mhs,
-                    onClick { onClick(mhs.nim) }
+                    onClick = {
+                        onClick(mhs.nim)
+                    }
                 )
             }
         )
@@ -164,21 +168,21 @@ fun CardMhs(
     mhs: Mahasiswa,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { },
-    ){
+    ) {
     Card(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
-    ){
+    ) {
         Column(
             modifier = Modifier.padding(8.dp)
-        ){
-            Row (
+        ) {
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
-            ){
-                Icon(imageVector = Icons.Filled.Person,contentDescription = "")
+            ) {
+                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = mhs.nama,
@@ -191,7 +195,7 @@ fun CardMhs(
                 verticalAlignment = Alignment.CenterVertically
 
             ) {
-                Icon(imageVector = Icons.Filled.DateRange,contentDescription = "")
+                Icon(imageVector = Icons.Filled.DateRange, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = mhs.nim,
@@ -202,16 +206,16 @@ fun CardMhs(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
-            ){
-                Icon(imageVector = Icons.Filled.Home,contentDescription = "")
+            ) {
+                Icon(imageVector = Icons.Filled.Home, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = mhs.kelas,
                     fontWeight = FontWeight.Bold,
                 )
+                }
             }
         }
     }
-}
 
 

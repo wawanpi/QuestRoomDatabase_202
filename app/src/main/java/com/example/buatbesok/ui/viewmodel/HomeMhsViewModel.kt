@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.stateIn
 class HomeMhsViewModel(
     private val repositoryMhs: RepositoryMhs
 ) : ViewModel() {
-
     val homeUiState: StateFlow<HomeUiState> = repositoryMhs.getAllMhs()
         .filterNotNull()
         .map {
