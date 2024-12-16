@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.buatbesok.data.entity.Mahasiswa
 import com.example.buatbesok.repository.RepositoryMhs
+import com.example.buatbesok.ui.navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -69,12 +70,13 @@ fun updateData() {
         )
     }
 }
-fun resetSnackBarMessage() {
-    updateUiState = updateUiState.copy(snackBarMessage = null)
+
 }
-fun Mahasiswa.toUIStateMhs(): MhsUiState = MhsUiState(
-    mahasiswaEvent = this.toDetailUiEvent(),
-        )
+    fun resetSnackBarMessage() {
+        updateUiState = updateUiState.copy(snackBarMessage = null)
+
     }
-}
+}fun Mahasiswa.toUIStateMhs(): MhsUiState = MhsUiState(
+    mahasiswaEvent = this.toDetailUiEvent(),
+)
 
