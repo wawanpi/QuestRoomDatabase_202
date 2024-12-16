@@ -101,7 +101,7 @@ fun BodyDetailMhs(
                 CircularProgressIndicator() //Tampilkan loading
             }
         }
-        detailUiState.isUiEventEmpty -> {
+        detailUiState.isEventNotEmpty -> {
             Column (
                 modifier = modifier
                     .fillMaxWidth()
@@ -132,7 +132,7 @@ fun BodyDetailMhs(
                 }
             }
         }
-        detailUiState.isUiEventEmpty -> {
+        detailUiState.isEventNotEmpty -> {
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
