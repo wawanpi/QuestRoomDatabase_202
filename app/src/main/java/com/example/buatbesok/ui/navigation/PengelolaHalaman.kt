@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.apllicationdata.ui.view.mahasiswa.DestinasiInsert
 import com.example.apllicationdata.ui.view.mahasiswa.InsertMhsView
+import com.example.buatbesok.ui.view.mahasiswa.DetailMhsView
 import com.example.buatbesok.ui.view.mahasiswa.HomeMhsView
 import com.example.buatbesok.ui.view.mahasiswa.UpdateMhsView
 
@@ -19,9 +20,9 @@ fun PengelolaHalaman(
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier
 ) {
-    NavHost(navController = navController, startDestination = DestinasiInsert.route) {
+    NavHost(navController = navController, startDestination = DestinasiHome.route) {
         composable(
-            route = DestinasiInsert.route
+            route = DestinasiHome.route
         ) {
             HomeMhsView(
                 onDetailClick = { nim ->
@@ -67,7 +68,7 @@ fun PengelolaHalaman(
             nim?.let { nim ->
                 DetailMhsView(
                     onBack = { navController.popBackStack() },
-                    onEditClick = { navController.navigate("${DestinasiEdit.route}/$it") },
+                    onEditClick = { navController.navigate("${DestinasiUpdate.route}/$it") },
                     modifier = modifier,
                     onDeleteClick = {
                         navController.popBackStack()
@@ -76,9 +77,9 @@ fun PengelolaHalaman(
             }
         }
         composable(
-            DestinasiEdit.routesWithArg,
+            DestinasiUpdate.routeWithArg,
             arguments = listOf(
-                navArgument(DestinasiEdit.NIM) {
+                navArgument(DestinasiUpdate.NIM) {
                     type = NavType.StringType
                 }
             )

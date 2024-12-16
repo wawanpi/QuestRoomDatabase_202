@@ -37,9 +37,10 @@ import com.example.buatbesok.ui.costumwidget.CustomTopAppBar
 import com.example.buatbesok.ui.viewmodel.DetailMhsViewModel
 import com.example.buatbesok.ui.viewmodel.DetailUiState
 import com.example.buatbesok.ui.viewmodel.PenyediaViewModel
+import com.example.buatbesok.ui.viewmodel.toMahasiswaEntity
 
 @Composable
-fun DetailMhsViewModel(
+fun DetailMhsView(
     modifier: Modifier,
     ViewModel: DetailMhsViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onBack: () -> Unit = { },
